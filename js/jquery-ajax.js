@@ -71,8 +71,23 @@
   //
 
   // TODO: your code goes here :)
+  $('#generateDoggoBtn').click(clickDoggoBtn)
+  function clickDoggoBtn () {
+    $.getJSON('https://dog.ceo/api/breeds/image/random', function(data) {
+      $(`<img src=${data.message}>`).appendTo($('#doggoContainer'))
+    })
+  }
+  $('#generateDoggoBtn').click(doggoClick)  
+  function doggoClick () {
+    $('#generateDoggoBtn').html('Generating Doggo...')
+  }
+  $('#generateDoggoBtn').on('click', function() {
+    console.log('Button clicked. Disabling...')
+    $('#generateDoggoBtn').attr('disabled', true)
+  })
 
-  //
+  
+  //              
   // Cool. Now let's kick it up a notch and allow selecting a specific breed of dog!
   //
   // 1) Add an empty dropdown menu (ie: <select></select>) to the <div id="selectBreedContainer"> element.
