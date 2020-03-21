@@ -74,7 +74,17 @@
   $('#generateDoggoBtn').click(clickDoggoBtn)
   function clickDoggoBtn () {
     $.getJSON('https://dog.ceo/api/breeds/image/random', function(data) {
-      $(`<img src=${data.message}>`).appendTo($('#doggoContainer'))
+ 
+      $('#doggoContainer').html(`<img src=${data.message}>`)
+
+      if (data.status === 'success') {
+        $('#generateDoggoBtn').removeAttr('disabled')
+      }
+      if (data.status === 'success') {
+        $('#generateDoggoBtn').html('Generate Doggo')
+      }
+      
+    
     })
   }
   $('#generateDoggoBtn').click(doggoClick)  
@@ -82,9 +92,11 @@
     $('#generateDoggoBtn').html('Generating Doggo...')
   }
   $('#generateDoggoBtn').on('click', function() {
-    console.log('Button clicked. Disabling...')
+    
     $('#generateDoggoBtn').attr('disabled', true)
+    
   })
+
 
   
   //              
